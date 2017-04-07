@@ -9,7 +9,7 @@ for FFBE
 //End If
 Dim Flag
 Dim ClickDelay = 2000
-Dim MaxTimer = 6
+Dim MaxTimer = 10
 
 Dim TotalEquipment, TotalAbility, TotalProps
 TotalEquipment = 4
@@ -505,9 +505,10 @@ ElseIf ItemNumber = 4 Then
  ItemMoguriPX = MoguriOfFourthItemPX
  ItemMoguriPY = MoguriOfFourthItemPY
 End If
-// Item Page
-// First Item and it is empty
+
+// Check #item status is finished
 Result = ItemStatusPX & "|" & ItemStatusPY & "|" & StatusFinished
+
 // when status show finished
 Timer = 0
 Do
@@ -546,26 +547,8 @@ If Timer >= MaxTimer Then
 End If
 
 Tap 355, 872
-Delay ClickDelay
-
-Timer = 0
-Do
-Ret = CmpColorEx("354|869|FFFFFF", 0.9)
-If Ret = 1 Then 
-Exit Do
-Else 
-Timer = Timer + 1
-End If
-Delay 500
-Loop While Timer < MaxTimer
-
-If Timer >= MaxTimer Then 
- TracePrint "(WhenFinshed)Exit"
- Exit Function
-End If
-
-Tap 354, 869
-Delay ClickDelay
+Delay 100
+Tap 355, 872
 
 TracePrint "(WhenFinshed)Success"
 
@@ -584,9 +567,9 @@ Timer = Timer + 1
 Else 
 Exit Do
 End If
-Loop While Timer < 5
+Loop While Timer < MaxTimer
 
-If Timer >= 5 Then 
+If Timer >= MaxTimer Then 
  TracePrint "(WhenFinshed)Exit"
  Exit Function
 End If
